@@ -1,0 +1,26 @@
+{
+  "name": "language-sql-mysql",
+  "version": "0.3.1",
+  "description": "Add MySQL keyword highlight to Atom's sql module",
+  "engines": {
+    "atom": "*",
+    "node": "*"
+  },
+  "homepage": "https://github.com/typester/atom-language-sql-mysql",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/typester/atom-language-sql-mysql.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typester/atom-language-sql-mysql/issues"
+  },
+  "readme": "# MySQL keyword highlight support to Atom SQL language module\n\nThis package is fork of [Atom's SQL language module](https://github.com/atom/language-sql), and add a feature to highlight MySQL keywords.\n",
+  "readmeFilename": "README.md",
+  "_id": "language-sql-mysql@0.3.1",
+  "dist": {
+    "shasum": "722fa3aed5bed24e3d2c72f8de55522cc8c907c3"
+  },
+  "_resolved": "/var/folders/5v/s20flp_910b3k2zxjl6vdrjh0000gn/T/d-11483-70909-g93g0e/package.tgz",
+  "_from": "/var/folders/5v/s20flp_910b3k2zxjl6vdrjh0000gn/T/d-11483-70909-g93g0e/package.tgz"
+}

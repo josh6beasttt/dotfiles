@@ -1,0 +1,73 @@
+############################################################
+# Environment Variables
+############################################################
+export WORKSPACE=$HOME/perka
+export WORKSPACE_JAVA=$WORKSPACE/java
+export VIEW_SHARD=$WORKSPACE_JAVA/shard/view
+export ANDROID_HOME=$BREW_HOME/android-sdk/23.0.2
+
+############################################################
+# Maven variables
+############################################################
+export MAVEN_OPTS=-Xmx1024M
+export M2_HOME=$WORKSPACE/dev/maven
+
+############################################################
+# PATH additions
+############################################################
+export PATH=$PATH:$WORKSPACE/dev/bin:${M2_HOME}/bin:$ANDROID_HOME/platform-tools
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:$M2_HOME/bin
+source $(brew --prefix nvm)/nvm.sh
+
+############################################################
+# Custom Maven commands
+############################################################
+# Launches Perka Bootstrap System
+alias pbs='mvn -f $WORKSPACE_JAVA/pbs/pom.xml exec:java | grep -iv "Successful health check"'
+
+# Lets you run Maven commands without all of the static tests that make it take forever
+alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'
+
+############################################################
+# Spark
+############################################################
+alias spark-start-master='spark-class org.apache.spark.deploy.master.Master --host localhost --port 9998 --webui-port 9999'
+alias spark-start-worker='spark-class org.apache.spark.deploy.worker.Worker spark://localhost:9998'
+
+############################################################
+# Functions
+############################################################
+
+# Usage: `kill_shard view`, `kill_shard loyalty`, `kill_shard user`, etc
+function kill_shard() {
+    PROCLIST=$(jps -l | grep com/getperka)
+
+    PROCIDS=$(echo "${PROCLIST}"| grep $1 | cut -d " " -f1)
+
+    NUMWORDS=$(echo "${PROCIDS}" | wc -w | tr -d ' ')
+
+    if [ "$NUMWORDS" -ne "1" ]; then
+        echo "Ambiguous results, would not know which process to kill. List of Perka processes: "
+        echo "${PROCLIST}"
+        return 1;
+    fi
+
+    PROCNAME=$(echo "${PROCLIST}" | grep ${PROCIDS})
+
+    kill $PROCIDS
+    echo "Killed ${PROCNAME}"
+}
+
+# Usage: `remake_shard view`, `remake_shard user`, etc
+# Remakes the kernel, and then the given shard (must be an actual shard, will not work for loyalty or other special jars)
+function remake_shard() {
+    mvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && mvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
+kill_shard $1
+}
+
+# Same as above, but uses fastmvn command
+function remake_shard_fast() {
+	fastmvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && fastmvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
+kill_shard $1
+}

@@ -1,0 +1,18 @@
+clear
+add ~/Dropbox/music
+
+
+set format_playlist= %d | %-25a | %-50t | %-20l | %y
+set format_playlist_va= %d | %-25a | %-50t | %-20l | %y
+set format_current=***** %a - %t [%l] *****
+set format_title=%t by %a on %l
+
+
+set aaa_mode=all
+set show_remaining_time=false
+set show_current_bitrate=true
+
+set lib_sort=artist date album discnumber tracknumber filename title
+
+shell pkill -f cmus-macbook-mediakeys 
+shell python ~/dotfiles/bin/cmus-macbook-mediakeys.py

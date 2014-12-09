@@ -1,0 +1,26 @@
+'editor':
+  'fontSize': 12
+  'showIndentGuide': true
+  'tabLength': 4
+'core':
+  'themes': [
+    'atom-dark-ui'
+    'monokai'
+  ]
+  'useReactEditor': true
+  'disabledPackages': [
+    'vim-mode'
+  ]
+'metrics': false
+'exception-reporting':
+  'userId': '29a46303-8427-9766-4c7e-b446bf1b8cd3'
+'welcome':
+  'showOnStartup': false
+'git-diff':
+  'showIconsInEditorGutter': true
+'grammar-selector':
+  'showOnRightSideOfStatusBar': true
+'linter':
+  'showStatusBarWhenCursorIsInErrorRange': true
+'linter-php':
+  'phpExecutablePath': '/usr/local/bin'

@@ -1,0 +1,27 @@
+{
+  "name": "language-latex",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Syntax highlighting for LaTeX for Atom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/area/language-latex"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# language-latex package\n\nSyntax highlighting for LaTeX in atom. Converted from the\n[Textmate bundle](https://github.com/textmate/latex.tmbundle)\n\n# About snippets\nSome features (e.g., [placeholder duplication](https://github.com/atom/snippets/issues/17)) are not yet implemented in Atom snippets management. It is for now impossible to reproduce some advanced coding. The majority of snippets have just been converted or simplified, a few are not property usable for now.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/area/language-latex/issues"
+  },
+  "homepage": "https://github.com/area/language-latex",
+  "_id": "language-latex@0.4.0",
+  "dist": {
+    "shasum": "0230c4e1463f6ccde61a6044fb76bfd5e58e1a1e"
+  },
+  "_resolved": "/var/folders/5v/s20flp_910b3k2zxjl6vdrjh0000gn/T/d-11483-13016-3l0hvw/package.tgz",
+  "_from": "/var/folders/5v/s20flp_910b3k2zxjl6vdrjh0000gn/T/d-11483-13016-3l0hvw/package.tgz"
+}

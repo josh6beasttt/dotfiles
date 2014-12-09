@@ -1,0 +1,73 @@
+##############################################
+#  Settings
+##############################################
+
+color0 eeeeee
+color1 f92672
+color2 beed5f
+color3 fd971f
+color4 ff669d
+color5 9e6ffe
+color6 00cbee
+color7 dd4444
+
+default_shade_color black
+default_outline_color black
+
+alignment top_left
+background yes
+own_window yes
+own_window_type dock
+own_window_transparent yes
+own_window_colour 262729
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+cpu_avg_samples 10
+text_buffer_size 50000
+update_interval 0.50
+double_buffer yes
+no_buffers yes
+total_run_times 0
+
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+
+use_xft yes
+xftfont ubuntu:size=13
+xftalpha 1
+
+gap_x 4
+gap_y 0
+minimum_size 9000 5
+
+short_units yes
+pad_percents 2
+top_name_width 2
+
+##############################################
+#  Output #
+##############################################
+TEXT
+
+${color1}Ubuntu GNOME \
+${color0}\
+| \
+${color2}CPU: \
+${color0}$cpu% @ $acpitemp C \
+| \
+${color3}Uptime: \
+${color0}$uptime \
+| \
+${color4}Disk: \
+${color0}${fs_free /} free \
+| \
+${color5}Int IP: \
+${color0}${execi 60 ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | tr '\n' '/' | sed 's/.$//'} \
+| \
+${color6}Ext IP: \
+${color0}${execi 60 curl http://www.icanhazip.com} \
+| \
+${color7}Now Playing: \
+${color0}${execi 2 /usr/local/bin/cmus-remote-display.sh} \
