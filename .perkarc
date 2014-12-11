@@ -4,6 +4,7 @@
 export WORKSPACE=$HOME/perka
 export WORKSPACE_JAVA=$WORKSPACE/java
 export VIEW_SHARD=$WORKSPACE_JAVA/shard/view
+export KERNEL=$WORKSPACE_JAVA/kernel
 export ANDROID_HOME=$BREW_HOME/android-sdk/23.0.2
 
 ############################################################
@@ -34,6 +35,16 @@ alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbu
 ############################################################
 alias spark-start-master='spark-class org.apache.spark.deploy.master.Master --host localhost --port 9998 --webui-port 9999'
 alias spark-start-worker='spark-class org.apache.spark.deploy.worker.Worker spark://localhost:9998'
+
+############################################################
+# Shorthand aliases 
+############################################################
+alias j='cd $WORKSPACE'
+alias k='cd $KERNEL'
+alias v='cd $VIEW_SHARD'
+alias starter='vim ~/.starter.json'
+alias cass='mvn -f $KERNEL/pom.xml cassandra:run'
+alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
 
 ############################################################
 # Functions
@@ -68,6 +79,12 @@ kill_shard $1
 
 # Same as above, but uses fastmvn command
 function remake_shard_fast() {
-	fastmvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && fastmvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
+    fastmvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && fastmvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
 kill_shard $1
 }
+
+# Arg 1 is auth token, arg 2 is customer UUID, arg 3 is merchant location UUID
+function add_arrival_action() {
+    curl -X POST -H "Authorization:Bearer $1" -H "Content-Type: application/json" -d '{"data":{"customerCheckin":[{"uuid":"cf16425d-351d-42ea-ae6f-6762bc05bb10", "arrivalType":"MANUAL","customerUuid":"$2", "merchantLocationUuid":"$3"}]},"value":"cf16425d-351d-42ea-ae6f-6762bc05bb10"}' https://api-staging.perka.com/1/card/customer/checkin
+}
+
