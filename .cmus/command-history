@@ -1,5 +1,8 @@
-seek 11:37
+set status_display_program=
+set softvol=true
+set softvol=false
 seek 1:52
+seek 11:37
 seek 1:40
 live-filter 
 seek 1m52s
@@ -58,8 +61,6 @@ seek 1:45
 shell touch pls
 shell ls
 shell 
-set softvol=true
-set softvol=false
 set output_plugin=ao
 seek 3:50
 save

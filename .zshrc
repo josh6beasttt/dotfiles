@@ -6,7 +6,7 @@ fortune | cowsay
 ######################################################################
 export DOTFILES=$HOME/dotfiles
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/texbin"
 
 export ZSH=$HOME/.oh-my-zsh
 

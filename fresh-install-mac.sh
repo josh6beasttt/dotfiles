@@ -18,6 +18,7 @@ brew cask install --appdir="/Applications" alfred
 brew cask install --appdir="/Applications" android-studio
 brew cask install --appdir="/Applications" asepsis
 brew cask install --appdir="/Applications" atom
+brew cask install --appdir="/Applications" basictex
 brew cask install --appdir="/Applications" bettertouchtool
 brew cask install --appdir="/Applications" betterzipql
 brew cask install --appdir="/Applications" caffeine
@@ -76,6 +77,8 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 source antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 
+# Install Vundle 
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Notes for the user
 echo "Remember to run the \"android\" tool at some point to install your Android SDK"
