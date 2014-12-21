@@ -10,7 +10,7 @@ brew tap jlhonora/lsusb
 brew tap mopidy/mopidy
 
 # Install brew packages
-brew install ack android-sdk apache-spark bash brew-cask cassandra cloc cmus coreutils cowsay cuetools cvs daemonize dotwrp fortune gawk gcc git gnu-sed go graphicsmagick heroku-toolbelt hub id3lib imagemagick jetty jq libev libfreenect lsusb maven mercurial mobile-shell mopidy mpd mutt mysql ncmpcpp node nvm p7zip pandoc parallel python s3cmd scala solr the_silver_searcher v8 watch wget wine winetricks zenity zsh
+brew install ack android-sdk apache-spark bash brew-cask cassandra cloc cmus coreutils cowsay cuetools cvs daemonize dotwrp fortune gawk gcc git gnu-sed go graphicsmagick heroku-toolbelt hub id3lib imagemagick jetty jq libev libfreenect lsusb maven mercurial mobile-shell mopidy mpd mutt mysql ncmpcpp node nvm p7zip pandoc parallel python s3cmd scala solr the_silver_searcher tree v8 watch wget wine winetricks zenity zsh
 
 # Install brew-cask packages
 brew cask install --appdir="/Applications" adium
@@ -38,7 +38,6 @@ brew cask install --appdir="/Applications" iterm2
 brew cask install --appdir="/Applications" java
 brew cask install --appdir="/Applications" java6
 brew cask install --appdir="/Applications" java7
-brew cask install --appdir="/Applications" karabiner
 brew cask install --appdir="/Applications" keka
 brew cask install --appdir="/Applications" mamp
 brew cask install --appdir="/Applications" mpv
@@ -50,6 +49,7 @@ brew cask install --appdir="/Applications" qlstephen
 brew cask install --appdir="/Applications" quicklook-csv
 brew cask install --appdir="/Applications" quicklook-json
 brew cask install --appdir="/Applications" seil
+brew cask install --appdir="/Applications" spark-dev 
 brew cask install --appdir="/Applications" spectacle
 brew cask install --appdir="/Applications" steam
 brew cask install --appdir="/Applications" sublime-text3
@@ -80,5 +80,9 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # Install Vundle 
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# Notes for the user
-echo "Remember to run the \"android\" tool at some point to install your Android SDK"
+# Install Android ADB + fastboot
+android update sdk --no-ui --filter 'platform-tools'
+
+# Install pyobjc for Macbook media-key control via Python script
+pip install -U pyobjc-core && pip install -U pyobjc
+

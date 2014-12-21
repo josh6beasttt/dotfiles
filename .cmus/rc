@@ -14,5 +14,4 @@ set show_current_bitrate=true
 
 set lib_sort=artist date album discnumber tracknumber filename title
 
-shell pkill -f cmus-macbook-mediakeys 
-shell python ~/dotfiles/bin/cmus-macbook-mediakeys.py
+shell pkill -f cmus-macbook-mediakeys; sleep 2; python ~/dotfiles/bin/cmus-macbook-mediakeys.py

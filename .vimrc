@@ -16,8 +16,6 @@ set showmode
 set nu
 set mouse=a
 syntax on
-set shiftwidth=2
-set softtabstop=2
 set incsearch
 set hlsearch
 

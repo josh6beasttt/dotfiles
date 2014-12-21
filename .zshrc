@@ -29,6 +29,12 @@ export TERM=xterm-256color
 
 export EDITOR=vim
 
+# Always use vimpager instead of less/more
+export PAGER=/usr/local/bin/vimpager
+alias less=$PAGER
+alias zless=$PAGER
+alias more=$PAGER
+
 ######################################################################
 # Various HOMEs
 ######################################################################
