@@ -31,9 +31,6 @@ export EDITOR=vim
 
 # Always use vimpager instead of less/more
 export PAGER=/usr/local/bin/vimpager
-alias less=$PAGER
-alias zless=$PAGER
-alias more=$PAGER
 
 ######################################################################
 # Various HOMEs
@@ -43,9 +40,6 @@ export APACHE_HOME=$BREW_HOME/apr/1.5.1
 export MAMP_HOME=/Applications/MAMP
 export SPARK_HOME=$BREW_HOME/apache-spark/1.1.0/libexec
 export ANDROID_HOME=/usr/local/opt/android-sdk
-if [ `uname` = "Darwin" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-fi
 
 ######################################################################
 # Perka
@@ -66,8 +60,6 @@ alias grep="grep --color"
 alias egrep="egrep --color"
 alias mv="mv -i"
 alias ack="ag"
-alias ggpo="nohup wine ~/Dropbox/Programs/Games/GGPO/ggpo.exe &"
-alias ggpofba="nohup wine ~/Dropbox/Programs/Games/GGPO/ggpofba.exe &"
 
 ######################################################################
 # Functions

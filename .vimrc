@@ -25,3 +25,6 @@ map <C-H> :h <C-R><C-W><CR>
 " CTRL-R to reload current file
 map <C-R> :source %<CR>
 
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
+

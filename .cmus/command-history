@@ -1,3 +1,8 @@
+seek 3m
+seek 3m50s
+q
+seek 5m
+seek 1:50
 qiut
 set status_display_program=
 set softvol=true
@@ -23,11 +28,8 @@ seek 4:30
 seek 4m
 seek +2m
 set show_playback_position=true
-seek 1:50
 set smart_artist_sort=true
-q
 seek 2m
-seek 3m
 seek 4:25
 seek 4m30s
 seek 4.5m

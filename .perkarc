@@ -39,7 +39,7 @@ alias spark-start-worker='spark-class org.apache.spark.deploy.worker.Worker spar
 ############################################################
 # Shorthand aliases 
 ############################################################
-alias j='cd $WORKSPACE'
+alias j='cd $WORKSPACE/java'
 alias k='cd $KERNEL'
 alias v='cd $VIEW_SHARD'
 alias starter='vim ~/.starter.json'
@@ -88,3 +88,4 @@ function add_arrival_action() {
     curl -X POST -H "Authorization:Bearer $1" -H "Content-Type: application/json" -d '{"data":{"customerCheckin":[{"uuid":"cf16425d-351d-42ea-ae6f-6762bc05bb10", "arrivalType":"MANUAL","customerUuid":"$2", "merchantLocationUuid":"$3"}]},"value":"cf16425d-351d-42ea-ae6f-6762bc05bb10"}' https://api-staging.perka.com/1/card/customer/checkin
 }
 
+ulimit -n 1024
