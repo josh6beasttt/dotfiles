@@ -29,6 +29,7 @@ alias pbs='mvn -f $WORKSPACE_JAVA/pbs/pom.xml exec:java | grep -iv "Successful h
 
 # Lets you run Maven commands without all of the static tests that make it take forever
 alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'
+alias build='fastmvn clean install'
 
 ############################################################
 # Spark

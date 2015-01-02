@@ -29,9 +29,6 @@ export TERM=xterm-256color
 
 export EDITOR=vim
 
-# Always use vimpager instead of less/more
-export PAGER=/usr/local/bin/vimpager
-
 ######################################################################
 # Various HOMEs
 ######################################################################
@@ -50,7 +47,6 @@ source ~/.perkarc
 # Aliases
 ######################################################################
 alias git=hub
-alias bfg="java -jar bfg.jar"
 if [ `uname` = "Darwin" ]; then
     alias ls="ls -G"
 else
@@ -66,7 +62,11 @@ alias ack="ag"
 ######################################################################
 function cdls { cd $1; ls; }
 function mkls { mkdir -p $1; ls $1; }
-function pid { ps aux|grep $1; }
+function lsproc {
+    FIRSTLETTER=${1:0:1}
+    REST=${1:1}
+    ps aux | grep [$FIRSTLETTER]$REST
+}
 # Converts all FLACs in pwd to MP3
 function flac2mp3 { parallel -j 4 'a={}; ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"' ::: *.flac; }
 # Count lines in a file
@@ -88,6 +88,11 @@ export PATH="$PATH:/Library/Ruby/Gems/2.0.0/gems" # Add Ruby Gems
 # Other PATHs
 ######################################################################
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+
+######################################################################
+# Git
+######################################################################
+alias gs="git status"
 
 ######################################################################
 # Local ~/.zshrc_override

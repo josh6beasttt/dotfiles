@@ -1,3 +1,8 @@
+# This will be faster if we install our ethernet drivers first
+echo "This will be faster if you download your ethernet drivers first"
+open http://www.asix.com.tw/download.php?sub=driverdetail&PItemID=131
+read -p "Press [Enter] if you have already installed those drivers and restarted your computer"
+
 # Install homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
