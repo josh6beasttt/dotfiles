@@ -1,4 +1,4 @@
-############################################################
+###########################################################
 # Environment Variables
 ############################################################
 export WORKSPACE=$HOME/perka
@@ -29,7 +29,8 @@ alias pbs='mvn -f $WORKSPACE_JAVA/pbs/pom.xml exec:java | grep -iv "Successful h
 
 # Lets you run Maven commands without all of the static tests that make it take forever
 alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'
-alias build='fastmvn clean install'
+alias fastbuild='fastmvn clean install'
+alias build='mvn clean install'
 
 ############################################################
 # Spark
@@ -89,4 +90,11 @@ function add_arrival_action() {
     curl -X POST -H "Authorization:Bearer $1" -H "Content-Type: application/json" -d '{"data":{"customerCheckin":[{"uuid":"cf16425d-351d-42ea-ae6f-6762bc05bb10", "arrivalType":"MANUAL","customerUuid":"$2", "merchantLocationUuid":"$3"}]},"value":"cf16425d-351d-42ea-ae6f-6762bc05bb10"}' https://api-staging.perka.com/1/card/customer/checkin
 }
 
+function local_token() {
+    curl -s  -d "username=dev@perka.com&password=perka&grant_type=password" http://api-local.perka.com/1/user/token | python -m json.tool | grep -i access_token | cut -d: -f2 | sed 's/.*"\(.*\)".*/\1/'
+}
+
+############################################################
+# Misc
+############################################################
 ulimit -n 1024

@@ -21,13 +21,13 @@ class KeySocketApp(NSApplication):
             keyState = (keyFlags & 0xFF00) >> 8
 
             if keyState is KEY_UP:
-                if keyCode == 20:
+                if (keyCode == 20) or (keyCode == 18):
                     subprocess.call(['cmus-remote', '-r'])
-                elif keyCode == 16:
+                elif keyCode == 16: 
                     subprocess.call(['cmus-remote', '-u'])
-                elif keyCode == 19:
+                elif (keyCode == 19) or (keyCode == 17):
                     subprocess.call(['cmus-remote', '-n'])
-
+                print keyCode
 
 if __name__ == '__main__':
     app = KeySocketApp.sharedApplication()

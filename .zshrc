@@ -35,7 +35,7 @@ export EDITOR=vim
 export BREW_HOME=/usr/local/Cellar
 export APACHE_HOME=$BREW_HOME/apr/1.5.1
 export MAMP_HOME=/Applications/MAMP
-export SPARK_HOME=$BREW_HOME/apache-spark/1.1.0/libexec
+export SPARK_HOME=$BREW_HOME/apache-spark/1.2.0/libexec
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 ######################################################################
@@ -63,9 +63,12 @@ alias ack="ag"
 function cdls { cd $1; ls; }
 function mkls { mkdir -p $1; ls $1; }
 function lsproc {
-    FIRSTLETTER=${1:0:1}
-    REST=${1:1}
-    ps aux | grep [$FIRSTLETTER]$REST
+    args=("$@")
+    for e in "${args[@]}"
+    do
+        regex="[${e:0:1}]${e:1}"
+        ps aux | grep --color ${regex}
+    done
 }
 # Converts all FLACs in pwd to MP3
 function flac2mp3 { parallel -j 4 'a={}; ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"' ::: *.flac; }
