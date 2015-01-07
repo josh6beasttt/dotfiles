@@ -15,8 +15,10 @@ map <C-H> :h <C-R><C-W><CR>
 map <C-R> :source %<CR>
 
 " Copy and paste to Mac copy buffer
-map <C-x> :!pbcopy<CR> 
-map <C-c> :w !pbcopy<CR><CR> 
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nmap <F2> :.w !pbcopy<CR><CR>
+vmap <F2> :w !pbcopy<CR><CR>
 
 " Sane tab settings
 set tabstop=8
