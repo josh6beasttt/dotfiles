@@ -36,7 +36,7 @@ export BREW_HOME=/usr/local/Cellar
 export APACHE_HOME=$BREW_HOME/apr/1.5.1
 export MAMP_HOME=/Applications/MAMP
 export SPARK_HOME=$BREW_HOME/apache-spark/1.2.0/libexec
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_SDK=$BREW_HOME/android-sdk/24.0.1
 
 ######################################################################
 # Perka
@@ -96,6 +96,22 @@ export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 # Git
 ######################################################################
 alias gs="git status"
+
+############################################################
+# Android
+############################################################
+export ANDROID_HOME="/usr/local/opt/android-sdk"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/tools:$PATH"
+export PATH="$ANDROID_HOME/build-tools/21.0.2:$PATH" 
+
+function android_screencap {
+    if [ -z "$*" ]; then
+        echo "No file output specified"
+        return 1
+    fi 
+    adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $1
+}
 
 ######################################################################
 # Local ~/.zshrc_override

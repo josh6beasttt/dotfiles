@@ -82,9 +82,6 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 source antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# Install Vundle 
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 # Install Android ADB + fastboot
 android update sdk --no-ui --filter 'platform-tools'
 

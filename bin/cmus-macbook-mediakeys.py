@@ -27,7 +27,7 @@ class KeySocketApp(NSApplication):
                     subprocess.call(['cmus-remote', '-u'])
                 elif (keyCode == 19) or (keyCode == 17):
                     subprocess.call(['cmus-remote', '-n'])
-                print keyCode
+                print keyCode 
 
 if __name__ == '__main__':
     app = KeySocketApp.sharedApplication()

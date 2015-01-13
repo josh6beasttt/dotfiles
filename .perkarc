@@ -5,7 +5,7 @@ export WORKSPACE=$HOME/perka
 export WORKSPACE_JAVA=$WORKSPACE/java
 export VIEW_SHARD=$WORKSPACE_JAVA/shard/view
 export KERNEL=$WORKSPACE_JAVA/kernel
-export ANDROID_HOME=$BREW_HOME/android-sdk/23.0.2
+export PERKA_ANDROID=$WORKSPACE/android
 
 ############################################################
 # Maven variables
@@ -24,11 +24,13 @@ source $(brew --prefix nvm)/nvm.sh
 ############################################################
 # Custom Maven commands
 ############################################################
-# Launches Perka Bootstrap System
+# Launches PBS and ignores all health-check messages that flood the console 
 alias pbs='mvn -f $WORKSPACE_JAVA/pbs/pom.xml exec:java | grep -iv "Successful health check"'
 
 # Lets you run Maven commands without all of the static tests that make it take forever
 alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'
+
+# Quick aliases to the most frequently-used mvn commands
 alias fastbuild='fastmvn clean install'
 alias build='mvn clean install'
 
@@ -38,12 +40,14 @@ alias build='mvn clean install'
 alias spark-start-master='spark-class org.apache.spark.deploy.master.Master --host localhost --port 9998 --webui-port 9999'
 alias spark-start-worker='spark-class org.apache.spark.deploy.worker.Worker spark://localhost:9998'
 
+
 ############################################################
 # Shorthand aliases 
 ############################################################
 alias j='cd $WORKSPACE/java'
 alias k='cd $KERNEL'
 alias v='cd $VIEW_SHARD'
+alias a='cd $PERKA_ANDROID'
 alias starter='vim ~/.starter.json'
 alias cass='mvn -f $KERNEL/pom.xml cassandra:run'
 alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
@@ -53,6 +57,9 @@ alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
 ############################################################
 
 # Usage: `kill_shard view`, `kill_shard loyalty`, `kill_shard user`, etc
+# Kills a running shard with the given name. If you kill a shard while PBS is running,
+# PBS will bring the shard back up, so this is useful when you're done building changes
+# to just one shard and want to restart just that shard in PBS.
 function kill_shard() {
     PROCLIST=$(jps -l | grep com/getperka)
 
@@ -73,7 +80,7 @@ function kill_shard() {
 }
 
 # Usage: `remake_shard view`, `remake_shard user`, etc
-# Remakes the kernel, and then the given shard (must be an actual shard, will not work for loyalty or other special jars)
+# Rebuilds the kernel, and then the given shard (must be an actual shard, will not work for loyalty or other special jars)
 function remake_shard() {
     mvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && mvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
 kill_shard $1
@@ -86,12 +93,14 @@ kill_shard $1
 }
 
 # Arg 1 is auth token, arg 2 is customer UUID, arg 3 is merchant location UUID
+# TODO: Might not work yet
 function add_arrival_action() {
     curl -X POST -H "Authorization:Bearer $1" -H "Content-Type: application/json" -d '{"data":{"customerCheckin":[{"uuid":"cf16425d-351d-42ea-ae6f-6762bc05bb10", "arrivalType":"MANUAL","customerUuid":"$2", "merchantLocationUuid":"$3"}]},"value":"cf16425d-351d-42ea-ae6f-6762bc05bb10"}' https://api-staging.perka.com/1/card/customer/checkin
 }
 
+# Gets a local token for the dev account
 function local_token() {
-    curl -s  -d "username=dev@perka.com&password=perka&grant_type=password" http://api-local.perka.com/1/user/token | python -m json.tool | grep -i access_token | cut -d: -f2 | sed 's/.*"\(.*\)".*/\1/'
+    curl -s -d "username=dev@perka.com&password=perka&grant_type=password" http://api-local.perka.com/1/user/token | python -m json.tool | grep -i access_token | cut -d: -f2 | sed 's/.*"\(.*\)".*/\1/'
 }
 
 ############################################################
