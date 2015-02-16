@@ -1,4 +1,5 @@
 .atom/compile-cache
+.atom/packages
 .atom/storage
 
 # All cmus files except the rc are useless
