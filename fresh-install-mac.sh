@@ -70,6 +70,8 @@ defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Speed up animations
 defaults write com.apple.dock expose-animation-duration -float 0.15;killall Dock
+# Proper anti-aliasing
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 3
 
 # Add zsh to /etc/shells
 echo /usr/local/bin/zsh >> /etc/shells
@@ -88,3 +90,5 @@ android update sdk --no-ui --filter 'platform-tools'
 # Install pyobjc for Macbook media-key control via Python script
 pip install -U pyobjc-core && pip install -U pyobjc
 
+# Restore muh freedoms
+python bin/fix-macosx.py

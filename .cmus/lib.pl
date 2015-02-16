@@ -893,6 +893,16 @@
 /Users/kevinmost/Dropbox/music/Opeth/Blackwater Park/04. The Drapery Falls.mp3
 /Users/kevinmost/Dropbox/music/Opeth/Blackwater Park/08-Opeth-Blackwater_Park.mp3
 /Users/kevinmost/Dropbox/music/Opeth/Still Life/01 The Moor.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/01 - Opeth - Coil.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/02 - Opeth - Heir Apparent.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/03 - Opeth - The Lotus Eater.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/04 - Opeth - Burden.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/05 - Opeth - Porcelain Heart.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/06 - Opeth - Hessian Peel.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/07 - Opeth - Hex Omega.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/08 - Opeth - Derelict Herds.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/09 - Opeth - Bridge of Sighs.mp3
+/Users/kevinmost/Dropbox/music/Opeth/Watershed/10 - Opeth - Den ständiga resan.mp3
 /Users/kevinmost/Dropbox/music/Ozzy Osbourne/Bark At The Moon/01 - Bark At The Moon.mp3
 /Users/kevinmost/Dropbox/music/Pantera/Cowboys From Hell/01 - Cowboys From Hell.mp3
 /Users/kevinmost/Dropbox/music/Paramore/RIOT!/04 Misery Business.mp3

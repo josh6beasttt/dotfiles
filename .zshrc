@@ -86,6 +86,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications" # Always install Casks into /
 export PATH="$PATH:/opt/st2" # Add Sublime to PATH
 export PATH="$PATH:$HOME/dotfiles/bin" # Add custom binaries from my Git repo
 export PATH="$PATH:/Library/Ruby/Gems/2.0.0/gems" # Add Ruby Gems
+export PATH="$PATH:/usr/local/CrossPack-AVR/bin" #Add AVR binaries
 
 ######################################################################
 # Other PATHs
@@ -97,6 +98,10 @@ export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 ######################################################################
 alias gs="git status"
 
+function grev {
+    git revert --no-commit $1..HEAD && git commit
+}
+
 ############################################################
 # Android
 ############################################################
@@ -105,6 +110,9 @@ export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_HOME/build-tools/21.0.2:$PATH" 
 
+alias adbd="adb devices"
+alias clover="adb connect 192.168.2.104:555"
+
 function android_screencap {
     if [ -z "$*" ]; then
         echo "No file output specified"
@@ -112,6 +120,16 @@ function android_screencap {
     fi 
     adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $1
 }
+function android_type {
+    adb shell input text "$@"
+}
+
+######################################################################
+# Golang
+######################################################################
+export GOPATH=$HOME/Github/go-workbench
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
 
 ######################################################################
 # Local ~/.zshrc_override

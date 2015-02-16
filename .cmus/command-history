@@ -1,4 +1,10 @@
+seek 4m
+q
+clear
 seek 11:37
+seek 11:38
+seek 11:39
+seek 1:10
 seek 1:50
 set format_playlist_va= %d | %-25a | %-50t | %-20l | %y
 set color_separator=red
@@ -11,7 +17,6 @@ live-filter all that
 live-fil
 seek 3m
 seek 3m50s
-q
 seek 5m
 qiut
 set status_display_program=
@@ -33,7 +38,6 @@ bind -f browser backspace browser-up
 bind -f common ^B win-page-up
 bind -f common ] vol +0 +1%
 seek 4:30
-seek 4m
 seek +2m
 set show_playback_position=true
 set smart_artist_sort=true
@@ -88,7 +92,6 @@ set lib_sort=artist date album discnumber tracknumber title filename
 set replaygain=disabled
 set replaygain=disable
 set replaygain=disablee
-clear
 colorscheme zenburn
 colorscheme monokai
 set smart_artist_sort=false
