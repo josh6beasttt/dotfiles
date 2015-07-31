@@ -1,12 +1,21 @@
+syntax on
+
 set showmode
 set nu
 set mouse=a
-syntax on
 
+" Show matching brackets
+set showmatch
+
+" Always show location in file (line #)
+set ruler
+
+" Ignore case in searches
+set ignorecase
+" Searches update as you type, not just after pressing enter
 set incsearch
+" Highlights matches as you search
 set hlsearch
-
-set cindent
 
 " CTRL-R to reload current file
 map <C-R> :source %<CR>
@@ -16,34 +25,10 @@ set clipboard=unnamed
 vmap <D-c> :w !pbcopy<CR><CR>
 
 " Sane tab settings
-set tabstop=8
+filetype plugin indent on
+set tabstop=4
 set shiftwidth=4
-set softtabstop=4
-set smarttab
 set expandtab
 
 " Automatically line-break at 72 columns when writing git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"fjeiwofjewiofjweofjewoi
-
-"jwfiwejfiowejfoi
-"jeiwofjweoifjwo
