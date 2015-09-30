@@ -24,3 +24,4 @@
  color2 = "cyan"
  active_column_color = "cyan"
  active_window_border = "blue"
+ media_library_display_data = "no"

@@ -34,6 +34,8 @@ alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbu
 alias fastbuild='fastmvn clean install'
 alias build='mvn clean install'
 
+alias perka_build='j && fastbuild && js && gulp gen && gulp build && pbs'
+
 ############################################################
 # Spark
 ############################################################
@@ -48,6 +50,7 @@ alias j='cd $WORKSPACE/java'
 alias k='cd $KERNEL'
 alias v='cd $VIEW_SHARD'
 alias a='cd $PERKA_ANDROID'
+alias js='cd $WORKSPACE/js'
 alias starter='vim ~/.starter.json'
 alias cass='mvn -f $KERNEL/pom.xml cassandra:run'
 alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
@@ -61,22 +64,24 @@ alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
 # PBS will bring the shard back up, so this is useful when you're done building changes
 # to just one shard and want to restart just that shard in PBS.
 function kill_shard() {
-    PROCLIST=$(jps -l | grep com/getperka)
+    for shard_name in "$@"; do
+        PROCLIST=$(jps -l | grep com/getperka)
 
-    PROCIDS=$(echo "${PROCLIST}"| grep $1 | cut -d " " -f1)
+        PROCIDS=$(echo "${PROCLIST}"| grep $shard_name | cut -d " " -f1)
 
-    NUMWORDS=$(echo "${PROCIDS}" | wc -w | tr -d ' ')
+        NUMWORDS=$(echo "${PROCIDS}" | wc -w | tr -d ' ')
 
-    if [ "$NUMWORDS" -ne "1" ]; then
-        echo "Ambiguous results, would not know which process to kill. List of Perka processes: "
-        echo "${PROCLIST}"
-        return 1;
-    fi
+        if [ "$NUMWORDS" -ne "1" ]; then
+            echo "Ambiguous results, would not know which process to kill. List of Perka processes: "
+            echo "${PROCLIST}"
+            return 1;
+        fi
 
-    PROCNAME=$(echo "${PROCLIST}" | grep ${PROCIDS})
+        PROCNAME=$(echo "${PROCLIST}" | grep ${PROCIDS})
 
-    kill $PROCIDS
-    echo "Killed ${PROCNAME}"
+        kill -9 $PROCIDS
+        echo "Killed ${PROCNAME}"
+    done
 }
 
 # Usage: `remake_shard view`, `remake_shard user`, etc
@@ -103,7 +108,32 @@ function local_token() {
     curl -s -d "username=dev@perka.com&password=perka&grant_type=password" http://api-local.perka.com/1/user/token | python -m json.tool | grep -i access_token | cut -d: -f2 | sed 's/.*"\(.*\)".*/\1/'
 }
 
+# Open JIRA ticket with corresponding number
+function jira() {
+    open https://jira.perka.com/browse/PROD-$1
+}
+
+############################################################
+# Android
+############################################################
+alias clover="adb connect 192.168.2.209:555"
+
+function clover_kill() {
+    adb -s $1 shell am force-stop com.getperka.clover.validator.dev && adb -s $1 shell pm clear com.getperka.clover.validator.dev
+}
+
+alias server_parameters="sed -i '' 's/10.0.3.2/192.168.1.151/g' $WORKSPACE/android/Clover/src/debug/res/values/server_parameters.xml $WORKSPACE/android/customerclient/src/debug/res/values/server_parameters.xml"
+
+function clover_install_apps {
+
+    adb devices
+
+    echo "Copy+paste the name of the device to install these APKs on here and press ENTER: "
+    read deviceName
+    curl -s https://gist.githubusercontent.com/kevinmost/0bb9ad21a5c840cde04e/raw/3540f393fedfc29cbc0b77eadc92fd7fffba0037/gistfile1.py | python - $deviceName
+}
+
 ############################################################
 # Misc
 ############################################################
-ulimit -n 1024
+ulimit -n 4096 

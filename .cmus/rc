@@ -1,5 +1,5 @@
 clear
-add ~/Dropbox/music
+add ~/Music
 
 
 set format_playlist= %d | %-25a | %-50t | %-20l | %y
