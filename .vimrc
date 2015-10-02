@@ -32,3 +32,6 @@ set expandtab
 
 " Automatically line-break at 72 columns when writing git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+

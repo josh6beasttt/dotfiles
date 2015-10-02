@@ -17,10 +17,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(brew dirhistory git git-extras gradle jsontools mvn osx python)
 
-source $ZSH/oh-my-zsh.sh
-
-# Antigen syntax highlighting
+# Antigen syntax highlighting and theming
 source ~/antigen/antigen.zsh
+antigen-use oh-my-zsh
+antigen-theme bira
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
@@ -57,6 +57,7 @@ alias egrep="egrep --color"
 alias mv="mv -i"
 alias ack="ag"
 alias teensy="dfu-programmer atmega32u4"
+alias i3-restart="i3-msg -t command restart"
 
 ######################################################################
 # Functions
@@ -94,11 +95,6 @@ export PATH="$PATH:/opt/st2" # Add Sublime to PATH
 export PATH="$PATH:$HOME/dotfiles/bin" # Add custom binaries from my Git repo
 export PATH="$PATH:/Library/Ruby/Gems/2.0.0/gems" # Add Ruby Gems
 export PATH="$PATH:/usr/local/CrossPack-AVR/bin" #Add AVR binaries
-
-######################################################################
-# Other PATHs
-######################################################################
-export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
 
 ######################################################################
 # Git
