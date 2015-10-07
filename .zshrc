@@ -32,11 +32,7 @@ export EDITOR=vim
 ######################################################################
 # Various HOMEs
 ######################################################################
-export BREW_HOME=/usr/local/Cellar
-export APACHE_HOME=$BREW_HOME/apr/1.5.1
-export MAMP_HOME=/Applications/MAMP
-export SPARK_HOME=$BREW_HOME/apache-spark/1.2.0/libexec
-export ANDROID_SDK=$BREW_HOME/android-sdk/24.0.1
+export ANDROID_HOME=$HOME/bin/android-sdk
 
 ######################################################################
 # Perka

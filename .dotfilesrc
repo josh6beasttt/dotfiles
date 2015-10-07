@@ -1,0 +1,13 @@
+[dotfiles]
+repository = ~/dotfiles
+ignore = [
+    'README.md',
+    '.dotfilessrc',
+    'requirements.txt',
+    '.git',
+    '.gitignore',
+    'link.py',
+    '*.swp'
+    ]
+externals = {
+    }

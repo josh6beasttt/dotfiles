@@ -1,0 +1,26 @@
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
+
+alias xclip="xclip -selection c"
+
+PATH="$PATH:$HOME/bin/android-studio/bin"
+PATH="$PATH:$HOME/bin/intellij/bin"
+
+PATH="$HOME/bin/android-sdk/platform-tools:$PATH"
+
+function getBrightness {
+    echo $(cat /sys/class/backlight/intel_backlight/brightness | xargs)
+}
+
+function brightness {
+    input=$(echo $1 | xargs)
+    operation=$(echo $input | cut -c1)
+    num=$(echo $input | cut -c2-999999)
+    echo "OP IS"$operation
+    case $operation in
+        +)
+            echo $(getBrightness)"+"$num
+            ;;
+    esac
+}
+
