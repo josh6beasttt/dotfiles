@@ -1,4 +1,7 @@
 [dotfiles]
+packages = [
+    'i3'
+    ]
 ignore = [
     'README.md',
     '.dotfilessrc',
