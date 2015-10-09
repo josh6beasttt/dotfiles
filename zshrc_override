@@ -10,19 +10,12 @@ PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 
 PATH="$HOME/bin/android-sdk/platform-tools:$PATH"
 
-function getBrightness {
-    echo $(cat /sys/class/backlight/intel_backlight/brightness | xargs)
-}
-
-function brightness {
-    input=$(echo $1 | xargs)
-    operation=$(echo $input | cut -c1)
-    num=$(echo $input | cut -c2-999999)
-    echo "OP IS"$operation
-    case $operation in
-        +)
-            echo $(getBrightness)"+"$num
-            ;;
-    esac
-}
-
+xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
+xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
+xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
+xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
+xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Constant Deceleration" 0.95
+# Set the deceleration of the TrackPad so high that it will never move
+xinput set-prop "SynPS/2 Synaptics TouchPad" 264 999999
+# Also disable tap to click. Now we can use the TrackPad justfor scrolling
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Tap Action" 0

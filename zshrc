@@ -14,25 +14,32 @@ ZSH_THEME="bira"
 
 HIST_STAMPS="yyyy-mm-dd"
 
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(brew dirhistory git git-extras gradle jsontools mvn osx python)
 
 # Antigen syntax highlighting and theming
 source ~/antigen/antigen.zsh
 antigen-use oh-my-zsh
 antigen-theme bira
-antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Plugins!
+ANTIGEN_PLUGINS=(
+    git 
+    git-extras 
+    gradle 
+    jsontools 
+    mvn 
+    python 
+    zsh-users/zsh-syntax-highlighting
+)
+for plugin in $ANTIGEN_PLUGINS; do
+    antigen bundle $plugin
+done
+
 antigen apply
 
 # Make sure our terminal actually tells programs that it supports 256-color
 export TERM=xterm-256color
 
 export EDITOR=vim
-
-######################################################################
-# Various HOMEs
-######################################################################
-export ANDROID_HOME=$HOME/bin/android-sdk
 
 ######################################################################
 # Perka
@@ -54,6 +61,7 @@ alias mv="mv -i"
 alias ack="ag"
 alias teensy="dfu-programmer atmega32u4"
 alias i3-restart="i3-msg -t command restart"
+eval $(thefuck --alias)
 
 ######################################################################
 # Functions
@@ -113,7 +121,7 @@ function git_new_branch {
 ############################################################
 # Android
 ############################################################
-export ANDROID_HOME="/usr/local/opt/android-sdk"
+export ANDROID_HOME=$HOME/bin/android-sdk
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_HOME/build-tools/21.0.2:$PATH" 
