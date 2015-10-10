@@ -10,6 +10,8 @@ PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 
 PATH="$HOME/bin/android-sdk/platform-tools:$PATH"
 
+PATH="$HOME/scripts:$PATH"
+
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
@@ -19,3 +21,5 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Constant Deceleration" 0.9
 xinput set-prop "SynPS/2 Synaptics TouchPad" 264 999999
 # Also disable tap to click. Now we can use the TrackPad justfor scrolling
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Tap Action" 0
+
+xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1

@@ -1,0 +1,1 @@
+echo $(pacmd dump | perl -a -n -e 'print $F[1] if /set-default-sink/')
