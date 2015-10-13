@@ -1,7 +1,8 @@
 [dotfiles]
 packages = [
     'i3',
-    'scripts'
+    'scripts',
+    'config'
     ]
 ignore = [
     'README.md',
