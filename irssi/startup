@@ -1,0 +1,3 @@
+/connect -SSL perka.irc.slack.com 6667
+/ignore * MODES
+/set beep_msg_level MSGS NOTICES DCC DCCMSGS HILIGHT
