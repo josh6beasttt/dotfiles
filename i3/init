@@ -9,12 +9,12 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 xinput set-prop "TPPS/2 IBM TrackPoint" "Device Accel Constant Deceleration" 0.95
 
-# Set the deceleration of the TrackPad so high that it will never move
-xinput set-prop "SynPS/2 Synaptics TouchPad" 264 999999
-# Also disable tap to click. Now we can use the TrackPad justfor scrolling
-xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Tap Action" 0
+# TrackPoints only!
+xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Enabled" 0
 
 # Make the trackball left+right click == middle-click
 xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 1
 # Slow it down a bit, too
 xinput set-prop "Primax Kensington Eagle Trackball" "Device Accel Constant Deceleration" 1.5
+
+daemonize $(which dropbox)
