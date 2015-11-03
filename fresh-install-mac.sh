@@ -45,7 +45,7 @@ mkdir -p ~/.nvm
 # Install brew-cask packages
 clear
 echo "Installing GUI apps via brew-cask"
-brew cask install adium alfred android-studio asepsis basictex bettertouchtool betterzipql clipmenu deluge disk-inventory-x dropbox filezilla flux genymotion gimp google-chrome intellij-idea iterm2-nightly karabiner keepingyouawake keka mpv qlcolorcode qlmarkdown qlprettypatch qlstephen quicklook-csv quicklook-json seil spark spectacle steam sublime-text3 virtualbox webpquicklook xquartz
+brew cask install adium alfred android-studio basictex bettertouchtool betterzipql clipmenu deluge disk-inventory-x dropbox filezilla flux genymotion gimp google-chrome intellij-idea iterm2-nightly karabiner keepingyouawake keka mpv qlcolorcode qlmarkdown qlprettypatch qlstephen quicklook-csv quicklook-json seil spark spectacle steam sublime-text3 virtualbox webpquicklook xquartz
 
 clear
 echo "Fixing the awful things that OS X thinks are okay to set as defaults"
