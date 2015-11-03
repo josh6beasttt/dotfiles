@@ -40,7 +40,7 @@ brew install ack android-sdk apache-spark bash brew-cask cassandra cloc cmus cor
 mkdir -p ~/Library/LaunchAgents
 ln -sfv /usr/local/opt/mpd/*.plist ~/Library/LaunchAgents
 # Why does nvm want me to make this directory? I don't even know. Thanks JS devs.
-mkdir ~/.nvm
+mkdir -p ~/.nvm
 
 # Install brew-cask packages
 clear
