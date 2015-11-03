@@ -7,10 +7,12 @@ packages = [
 ignore = [
     'README.md',
     '.dotfilessrc',
+    'fresh-install-mac.sh',
     'requirements.txt',
     '.git',
     '.gitignore',
     'link.py',
+    'notes*.md',
     '*.swp'
     ]
 externals = {
