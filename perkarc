@@ -3,8 +3,6 @@
 ############################################################
 export WORKSPACE=$HOME/perka
 export WORKSPACE_JAVA=$WORKSPACE/java
-export VIEW_SHARD=$WORKSPACE_JAVA/shard/view
-export KERNEL=$WORKSPACE_JAVA/kernel
 export PERKA_ANDROID=$WORKSPACE/android
 
 ############################################################
@@ -26,6 +24,7 @@ source $(brew --prefix nvm)/nvm.sh
 ############################################################
 alias perka_run="mvn -f $WORKSPACE/java/api/pom.xml exec:java"
 alias perka_build="fastmvn -f $WORKSPACE/java/pom.xml clean install"
+alias perka_build_js="cd $WORKSPACE/js && npm run-script perka"
 
 # Lets you run Maven commands without all of the static tests that make it take forever
 alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'
@@ -34,26 +33,12 @@ alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbu
 alias fastbuild='fastmvn clean install'
 alias build='mvn clean install'
 
-alias perka_build='j && fastbuild && js && gulp gen && gulp build && pbs'
-
-############################################################
-# Spark
-############################################################
-alias spark-start-master='spark-class org.apache.spark.deploy.master.Master --host localhost --port 9998 --webui-port 9999'
-alias spark-start-worker='spark-class org.apache.spark.deploy.worker.Worker spark://localhost:9998'
-
-
 ############################################################
 # Shorthand aliases 
 ############################################################
 alias j='cd $WORKSPACE/java'
-alias k='cd $KERNEL'
-alias v='cd $VIEW_SHARD'
 alias a='cd $PERKA_ANDROID'
 alias js='cd $WORKSPACE/js'
-alias starter='vim ~/.starter.json'
-alias cass='mvn -f $KERNEL/pom.xml cassandra:run'
-alias jetty='mvn -f $KERNEL/pom.xml jetty:run'
 
 ############################################################
 # Functions
@@ -84,31 +69,7 @@ function kill_shard() {
     done
 }
 
-# Usage: `remake_shard view`, `remake_shard user`, etc
-# Rebuilds the kernel, and then the given shard (must be an actual shard, will not work for loyalty or other special jars)
-function remake_shard() {
-    mvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && mvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
-kill_shard $1
-}
-
-# Same as above, but uses fastmvn command
-function remake_shard_fast() {
-    fastmvn -f $WORKSPACE_JAVA/kernel/pom.xml clean install && fastmvn -f $WORKSPACE_JAVA/shard/$1/pom.xml clean install && 
-kill_shard $1
-}
-
-# Arg 1 is auth token, arg 2 is customer UUID, arg 3 is merchant location UUID
-# TODO: Might not work yet
-function add_arrival_action() {
-    curl -X POST -H "Authorization:Bearer $1" -H "Content-Type: application/json" -d '{"data":{"customerCheckin":[{"uuid":"cf16425d-351d-42ea-ae6f-6762bc05bb10", "arrivalType":"MANUAL","customerUuid":"$2", "merchantLocationUuid":"$3"}]},"value":"cf16425d-351d-42ea-ae6f-6762bc05bb10"}' https://api-staging.perka.com/1/card/customer/checkin
-}
-
-# Gets a local token for the dev account
-function local_token() {
-    curl -s -d "username=dev@perka.com&password=perka&grant_type=password" http://api-local.perka.com/1/user/token | python -m json.tool | grep -i access_token | cut -d: -f2 | sed 's/.*"\(.*\)".*/\1/'
-}
-
-# Open JIRA ticket with corresponding number
+# Open JIRA ticket with number given as first argument
 function jira() {
     open https://jira.perka.com/browse/PROD-$1
 }
@@ -116,21 +77,8 @@ function jira() {
 ############################################################
 # Android
 ############################################################
-alias clover="adb connect 192.168.2.209:555"
-
 function clover_kill() {
     adb -s $1 shell am force-stop com.getperka.clover.validator.dev && adb -s $1 shell pm clear com.getperka.clover.validator.dev
-}
-
-alias server_parameters="sed -i '' 's/10.0.3.2/192.168.1.151/g' $WORKSPACE/android/Clover/src/debug/res/values/server_parameters.xml $WORKSPACE/android/customerclient/src/debug/res/values/server_parameters.xml"
-
-function clover_install_apps {
-
-    adb devices
-
-    echo "Copy+paste the name of the device to install these APKs on here and press ENTER: "
-    read deviceName
-    curl -s https://gist.githubusercontent.com/kevinmost/0bb9ad21a5c840cde04e/raw/3540f393fedfc29cbc0b77eadc92fd7fffba0037/gistfile1.py | python - $deviceName
 }
 
 ############################################################
