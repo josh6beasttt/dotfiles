@@ -24,8 +24,8 @@ source $(brew --prefix nvm)/nvm.sh
 ############################################################
 # Custom Maven commands
 ############################################################
-# Launches PBS and ignores all health-check messages that flood the console 
-alias pbs='mvn -f $WORKSPACE_JAVA/pbs/pom.xml exec:java | grep -iv "Successful health check"'
+alias perka_run="mvn -f $WORKSPACE/java/api/pom.xml exec:java"
+alias perka_build="fastmvn -f $WORKSPACE/java/pom.xml clean install"
 
 # Lets you run Maven commands without all of the static tests that make it take forever
 alias fastmvn='mvn -TC1 -DskipCassandraTests -DskipDependencyChecks -DskipFindbugs -DskipTests'

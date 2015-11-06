@@ -33,7 +33,61 @@ brew cask install java
 # Install brew packages
 clear
 echo "Installing command-line tools via brew"
-brew install ack android-sdk apache-spark bash brew-cask cassandra cloc cmus coreutils cowsay cuetools cvs daemonize dotwrp fortune gawk gcc git gnu-sed go graphicsmagick heroku-toolbelt hub id3lib imagemagick jetty jq libev libfreenect lsusb maven mercurial mobile-shell mopidy mpd mutt ncmpcpp node nvm p7zip pandoc parallel python s3cmd scala solr the_silver_searcher tree v8 watch wget wine winetricks zenity zsh
+brew install ack \
+	apache-spark \
+	bash \
+	brew-cask \
+	cassandra \
+	cloc \
+	cmus \
+	coreutils \
+	cowsay \
+	cuetools \
+	cvs \
+	daemonize \
+	dotwrp \
+	fortune \
+	gawk \
+	gcc \
+	git \
+	gnu-sed \
+	go \
+	graphicsmagick \
+	heroku-toolbelt \
+	hub \
+	id3lib \
+	imagemagick \
+	jetty \
+	jq \
+	libev \
+	libfreenect \
+	lsusb \
+	maven \
+	mercurial \
+	mobile-shell \
+	mopidy \
+	mpd \
+	mutt \
+	ncmpcpp \
+	nvm \
+	p7zip \
+	pandoc \
+	parallel \
+	pidcat \
+	python \
+	s3cmd \
+	scala \
+	solr \
+	thefuck \
+	the_silver_searcher \
+	tree \
+	v8 \
+	watch \
+	wget \
+	wine \
+	winetricks \
+	zenity \
+	zsh
 
 # Post-command-line-setup stuff
 # mpd starts at boot
@@ -45,7 +99,46 @@ mkdir -p ~/.nvm
 # Install brew-cask packages
 clear
 echo "Installing GUI apps via brew-cask"
-brew cask install adium alfred android-studio basictex bettertouchtool betterzipql clipmenu deluge disk-inventory-x dropbox filezilla flux genymotion gimp google-chrome intellij-idea iterm2-nightly karabiner keepingyouawake keka mpv qlcolorcode qlmarkdown qlprettypatch qlstephen quicklook-csv quicklook-json seil spark spectacle steam sublime-text3 virtualbox webpquicklook xquartz
+brew cask install adium \
+	alfred \
+	android-studio \
+	basictex \
+	bettertouchtool \
+	betterzipql \
+	clipmenu \
+	deluge \
+	disk-inventory-x \
+	dropbox \
+	filezilla \
+	flux \
+	genymotion \
+	gimp \
+	google-chrome \
+	intellij-idea \
+	iterm2-nightly \
+	karabiner \
+	keepingyouawake \
+	keka \
+	mpv \
+	postgres \
+	qlcolorcode \
+	qlmarkdown \
+	qlprettypatch \
+	qlstephen \
+	quicklook-csv \
+	quicklook-json \
+	scroll-reverser \
+	seil \
+    slack \
+	spark \
+	spectacle \
+	spotify \
+	steam \
+	sublime-text3 \
+	teamviewer \
+	virtualbox \
+	webpquicklook \
+	xquartz
 
 clear
 echo "Fixing the awful things that OS X thinks are okay to set as defaults"
@@ -67,13 +160,11 @@ sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 chsh -s /usr/local/bin/zsh
 # Install oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
-# Install antigen and syntax highlighter
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > antigen.zsh
-source antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
+# Install antigen
+git clone https://github.com/zsh-users/antigen.git ~/.antigen-repo
 
 # Install Android ADB + fastboot. Because android > xcode, there is a no-ui option, too!
 android update sdk --no-ui --filter 'platform-tools'
 
 # Restore muh freedoms
-python bin/fix-macosx.py
+python scripts-osx/fix-macosx.py

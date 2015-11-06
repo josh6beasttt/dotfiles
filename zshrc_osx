@@ -1,0 +1,3 @@
+eval "$(thefuck --alias)"
+PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin/"
+PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"

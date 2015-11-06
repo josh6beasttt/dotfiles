@@ -16,14 +16,14 @@ HIST_STAMPS="yyyy-mm-dd"
 
 
 # Antigen syntax highlighting and theming
-source ~/antigen/antigen.zsh
+source ~/.antigen-repo/antigen.zsh
 antigen-use oh-my-zsh
 antigen-theme bira
 
 # Plugins!
 ANTIGEN_PLUGINS=(
-    git 
-    git-extras 
+    git
+    git-extras
     gradle 
     jsontools 
     mvn 
@@ -70,8 +70,7 @@ function cdls { cd $1; ls; }
 function mkls { mkdir -p $1; ls $1; }
 function lsproc {
     args=("$@")
-    for e in "${args[@]}"
-    do
+    for e in "${args[@]}"; do
         regex="[${e:0:1}]${e:1}"
         ps aux | grep --color ${regex}
     done
@@ -82,10 +81,6 @@ function flac2mp3 { parallel -j 4 'a={}; ffmpeg -i "$a" -qscale:a 0 "${a[@]/%fla
 function countlines { wc -l $1 | tr -d ' ' }
 # Edit an rc file and then source it
 function rc { $EDITOR $1 && source $1 }
-# Change Java version to the first arg typed. Ex: 1.7, 1.8...
-function changeJavaVersion {
-    gsed -i "s/1\.[5-9]/$1/g" ~/.zshrc_override
-}
 
 ######################################################################
 # Options
@@ -222,3 +217,17 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 if [ -f $HOME/.zshrc_override ]; then
     source $HOME/.zshrc_override
 fi
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    source $HOME/.zshrc_linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    source $HOME/.zshrc_osx
+fi
+
+function g {
+    if [ $# -eq 0 ]; then
+        git status
+    else
+        git $@
+    fi
+}
+
