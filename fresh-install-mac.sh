@@ -33,7 +33,7 @@ brew cask install java
 # Install brew packages
 clear
 echo "Installing command-line tools via brew"
-brew install ack \
+brew install \
 	apache-spark \
 	bash \
 	brew-cask \
@@ -101,7 +101,8 @@ mkdir -p ~/.nvm
 # Install brew-cask packages
 clear
 echo "Installing GUI apps via brew-cask"
-brew cask install adium \
+brew cask install \
+	adium \
 	alfred \
 	android-studio \
 	asepsis \
