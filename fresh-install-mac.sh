@@ -102,6 +102,7 @@ echo "Installing GUI apps via brew-cask"
 brew cask install adium \
 	alfred \
 	android-studio \
+    asepsis \
 	basictex \
 	bettertouchtool \
 	betterzipql \
@@ -120,6 +121,7 @@ brew cask install adium \
 	keepingyouawake \
 	keka \
 	mpv \
+    obs \
 	postgres \
 	qlcolorcode \
 	qlmarkdown \
@@ -134,6 +136,7 @@ brew cask install adium \
 	spectacle \
 	spotify \
 	steam \
+    stepmania \
 	sublime-text3 \
 	teamviewer \
 	virtualbox \

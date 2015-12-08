@@ -2,7 +2,6 @@
 # Environment Variables
 ############################################################
 export WORKSPACE=$HOME/perka
-export WORKSPACE_JAVA=$WORKSPACE/java
 export PERKA_ANDROID=$WORKSPACE/android
 
 ############################################################
@@ -77,8 +76,10 @@ function jira() {
 ############################################################
 # Android
 ############################################################
-function clover_kill() {
-    adb -s $1 shell am force-stop com.getperka.clover.validator.dev && adb -s $1 shell pm clear com.getperka.clover.validator.dev
+function perka_android_wipe() {
+    for app in com.getperka.clover.validator.dev com.getperka.android.dev; do
+        adb shell pm clear $app
+    done
 }
 
 ############################################################

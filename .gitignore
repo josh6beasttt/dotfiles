@@ -1,3 +1,14 @@
+config/ranger/bookmarks
+config/ranger/history
+config/mopidy/
+
+mpd/log
+
+ncmpcpp/error.log
+
+################################################################################
+################################################################################
+
 # Created by https://www.gitignore.io/api/windows,osx,linux,vim
 
 ### Windows ###
@@ -67,9 +78,3 @@ Session.vim
 .netrwhist
 *~
 
-###############################################################################
-
-config/ranger/bookmarks
-config/ranger/history
-
-mpd/log

@@ -83,11 +83,6 @@ function countlines { wc -l $1 | tr -d ' ' }
 function rc { $EDITOR $1 && source $1 }
 
 ######################################################################
-# Options
-######################################################################
-export HOMEBREW_CASK_OPTS="--appdir=/Applications" # Always install Casks into /Applications
-
-######################################################################
 # Binaries to add to PATH
 ######################################################################
 export PATH="$PATH:/opt/st2" # Add Sublime to PATH
@@ -119,7 +114,9 @@ function git_new_branch {
 export ANDROID_HOME=$HOME/bin/android-sdk
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
-export PATH="$ANDROID_HOME/build-tools/21.0.2:$PATH" 
+
+# Adds the latest build-tools to the path
+export PATH="$(ls -d $ANDROID_HOME/build-tools/[0-9]* | tail -1):$PATH"
 
 alias adbs=adb_select
 

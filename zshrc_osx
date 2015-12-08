@@ -1,3 +1,9 @@
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export GRADLE_HOME=/usr/local/opt/gradle/libexec
+
 eval "$(thefuck --alias)"
 PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin/"
 PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
