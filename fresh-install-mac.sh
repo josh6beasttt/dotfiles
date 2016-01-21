@@ -33,7 +33,7 @@ brew cask install java
 # Install brew packages
 clear
 echo "Installing command-line tools via brew"
-brew install ack \
+brew install \
 	apache-spark \
 	bash \
 	brew-cask \
@@ -75,6 +75,8 @@ brew install ack \
 	parallel \
 	pidcat \
 	python \
+	rbenv \
+	ruby-build \
 	s3cmd \
 	scala \
 	solr \
@@ -99,10 +101,11 @@ mkdir -p ~/.nvm
 # Install brew-cask packages
 clear
 echo "Installing GUI apps via brew-cask"
-brew cask install adium \
+brew cask install \
+	adium \
 	alfred \
 	android-studio \
-    asepsis \
+	asepsis \
 	basictex \
 	bettertouchtool \
 	betterzipql \
@@ -119,9 +122,10 @@ brew cask install adium \
 	iterm2-nightly \
 	karabiner \
 	keepingyouawake \
+	kensington-trackball-works \
 	keka \
 	mpv \
-    obs \
+	obs \
 	postgres \
 	qlcolorcode \
 	qlmarkdown \
@@ -131,12 +135,12 @@ brew cask install adium \
 	quicklook-json \
 	scroll-reverser \
 	seil \
-    slack \
+	slack \
 	spark \
 	spectacle \
 	spotify \
 	steam \
-    stepmania \
+	stepmania \
 	sublime-text3 \
 	teamviewer \
 	virtualbox \
@@ -171,3 +175,8 @@ android update sdk --no-ui --filter 'platform-tools'
 
 # Restore muh freedoms
 python scripts-osx/fix-macosx.py
+
+# Install Ruby and Rails
+rbenv install 2.2.3
+rbenv global 2.2.3
+gem install rails -v 4.2.4
