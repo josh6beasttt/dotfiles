@@ -22,6 +22,7 @@ source $(brew --prefix nvm)/nvm.sh
 # Custom Maven commands
 ############################################################
 alias perka_run="mvn -f $WORKSPACE/java/api/pom.xml exec:java"
+alias perka_run_clean="init-perka-db && flyway migrate && perka_run"
 alias perka_build="fastmvn -f $WORKSPACE/java/pom.xml clean install"
 alias perka_build_js="cd $WORKSPACE/js && npm run-script perka"
 
@@ -86,3 +87,4 @@ function perka_android_wipe() {
 # Misc
 ############################################################
 ulimit -n 4096 
+

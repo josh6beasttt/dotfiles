@@ -87,7 +87,6 @@ function rc { $EDITOR $1 && source $1 }
 ######################################################################
 export PATH="$PATH:/opt/st2" # Add Sublime to PATH
 export PATH="$PATH:$HOME/dotfiles/bin" # Add custom binaries from my Git repo
-export PATH="$PATH:/Library/Ruby/Gems/2.0.0/gems" # Add Ruby Gems
 export PATH="$PATH:/usr/local/CrossPack-AVR/bin" #Add AVR binaries
 
 ######################################################################

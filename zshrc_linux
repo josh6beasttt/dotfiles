@@ -3,8 +3,6 @@ alias xclip="xclip -selection c"
 PATH="$PATH:$HOME/bin/android-studio/bin"
 PATH="$PATH:$HOME/bin/intellij/bin"
 
-PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
-
 PATH="$HOME/bin/android-sdk/platform-tools:$PATH"
 
 PATH="$HOME/.scripts:$PATH"
