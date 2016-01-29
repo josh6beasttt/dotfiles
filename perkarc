@@ -43,32 +43,6 @@ alias js='cd $WORKSPACE/js'
 ############################################################
 # Functions
 ############################################################
-
-# Usage: `kill_shard view`, `kill_shard loyalty`, `kill_shard user`, etc
-# Kills a running shard with the given name. If you kill a shard while PBS is running,
-# PBS will bring the shard back up, so this is useful when you're done building changes
-# to just one shard and want to restart just that shard in PBS.
-function kill_shard() {
-    for shard_name in "$@"; do
-        PROCLIST=$(jps -l | grep com/getperka)
-
-        PROCIDS=$(echo "${PROCLIST}"| grep $shard_name | cut -d " " -f1)
-
-        NUMWORDS=$(echo "${PROCIDS}" | wc -w | tr -d ' ')
-
-        if [ "$NUMWORDS" -ne "1" ]; then
-            echo "Ambiguous results, would not know which process to kill. List of Perka processes: "
-            echo "${PROCLIST}"
-            return 1;
-        fi
-
-        PROCNAME=$(echo "${PROCLIST}" | grep ${PROCIDS})
-
-        kill -9 $PROCIDS
-        echo "Killed ${PROCNAME}"
-    done
-}
-
 # Open JIRA ticket with number given as first argument
 function jira() {
     open https://jira.perka.com/browse/PROD-$1

@@ -95,6 +95,8 @@ export PATH="$PATH:/usr/local/CrossPack-AVR/bin" #Add AVR binaries
 alias gs="git status"
 alias glg="git lg"
 alias gdm="git diff master"
+alias gap="git add -p ."
+alias gca="git commit --amend"
 
 alias gerrit_push="git push origin HEAD:refs/for/master"
 alias gerrit_draft="git push origin HEAD:refs/drafts/master"
