@@ -33,10 +33,12 @@ brew cask install java
 # Install brew packages
 clear
 echo "Installing command-line tools via brew"
-brew install \
+brew install\
+	ack \
 	apache-spark \
+	nitsky/stm32/arm-none-eabi-gcc \
+	osx-cross/avr/avr-libc \
 	bash \
-	brew-cask \
 	cassandra \
 	cloc \
 	cmus \
@@ -45,13 +47,15 @@ brew install \
 	cuetools \
 	cvs \
 	daemonize \
-	dotwrp \
+	dfu-programmer \
+	dfu-util \
+	homebrew/science/dotwrp \
 	fortune \
 	gawk \
 	gcc \
 	git \
 	gnu-sed \
-	go \
+	gradle \
 	graphicsmagick \
 	heroku-toolbelt \
 	hub \
@@ -61,35 +65,38 @@ brew install \
 	jq \
 	libev \
 	libfreenect \
-	lsusb \
+	homebrew/binary/libspotify \
+	jlhonora/lsusb/lsusb \
 	maven \
 	mercurial \
 	mobile-shell \
-	mopidy \
+	mopidy/mopidy/mopidy \
 	mpd \
 	mutt \
+	mysql \
 	ncmpcpp \
+	node \
 	nvm \
-	p7zip \
 	pandoc \
 	parallel \
 	pidcat \
 	python \
 	rbenv \
-	ruby-build \
 	s3cmd \
 	scala \
 	solr \
-	thefuck \
+	stlink \
 	the_silver_searcher \
+	thefuck \
 	tree \
+	unar \
 	v8 \
 	watch \
 	wget \
-	wine \
 	winetricks \
-	zenity \
-	zsh
+	homebrew/x11/zenity \
+	zsh \
+
 
 # Post-command-line-setup stuff
 # mpd starts at boot
@@ -102,17 +109,20 @@ mkdir -p ~/.nvm
 clear
 echo "Installing GUI apps via brew-cask"
 brew cask install \
+	acorn \
 	adium \
 	alfred \
 	android-studio \
-	asepsis \
+	arduino \
 	basictex \
 	bettertouchtool \
 	betterzipql \
 	clipmenu \
+	crosspack-avr \
 	deluge \
 	disk-inventory-x \
 	dropbox \
+	enjoyable \
 	filezilla \
 	flux \
 	genymotion \
@@ -120,10 +130,11 @@ brew cask install \
 	google-chrome \
 	intellij-idea \
 	iterm2-nightly \
+	java \
 	karabiner \
 	keepingyouawake \
-	kensington-trackball-works \
 	keka \
+	kensington-trackball-works \
 	mpv \
 	obs \
 	postgres \
@@ -143,9 +154,10 @@ brew cask install \
 	stepmania \
 	sublime-text3 \
 	teamviewer \
+	usb-overdrive \
 	virtualbox \
 	webpquicklook \
-	xquartz
+	xquartz \
 
 clear
 echo "Fixing the awful things that OS X thinks are okay to set as defaults"
@@ -170,13 +182,8 @@ curl -L http://install.ohmyz.sh | sh
 # Install antigen
 git clone https://github.com/zsh-users/antigen.git ~/.antigen-repo
 
-# Install Android ADB + fastboot. Because android > xcode, there is a no-ui option, too!
+# Install Android ADB + fastboot.
 android update sdk --no-ui --filter 'platform-tools'
 
-# Restore muh freedoms
+# Stop stealing my information, Tim Cook
 python scripts-osx/fix-macosx.py
-
-# Install Ruby and Rails
-rbenv install 2.2.3
-rbenv global 2.2.3
-gem install rails -v 4.2.4
