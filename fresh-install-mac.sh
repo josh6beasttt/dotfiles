@@ -184,6 +184,3 @@ git clone https://github.com/zsh-users/antigen.git ~/.antigen-repo
 
 # Install Android ADB + fastboot.
 android update sdk --no-ui --filter 'platform-tools'
-
-# Stop stealing my information, Tim Cook
-python scripts-osx/fix-macosx.py
