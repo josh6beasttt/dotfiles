@@ -42,11 +42,6 @@ export TERM=xterm-256color
 export EDITOR=vim
 
 ######################################################################
-# Perka
-######################################################################
-source ~/.perkarc
-
-######################################################################
 # Aliases
 ######################################################################
 alias git=hub
@@ -112,7 +107,8 @@ function git_new_branch {
 ############################################################
 # Android
 ############################################################
-export ANDROID_HOME=$HOME/bin/android-sdk
+export JAVA_HOME="`/usr/libexec/java_home`"
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 

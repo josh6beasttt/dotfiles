@@ -121,6 +121,7 @@ brew cask install \
 	crosspack-avr \
 	deluge \
 	disk-inventory-x \
+    dockertoolbox \
 	dropbox \
 	enjoyable \
 	filezilla \
