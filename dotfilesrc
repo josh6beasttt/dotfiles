@@ -6,7 +6,7 @@ packages = [
     ]
 ignore = [
     'README.md',
-    '.dotfilessrc',
+    '.dotfilesrc',
     'fresh-install-mac.sh',
     'requirements.txt',
     '.git',
