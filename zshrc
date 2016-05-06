@@ -1,6 +1,3 @@
-# Truly the most important part of this entire rc file
-fortune | cowsay
-
 ######################################################################
 # Boilerplate
 ######################################################################
@@ -22,7 +19,10 @@ antigen-theme bira
 
 # Plugins!
 ANTIGEN_PLUGINS=(
-    git
+    adb
+    brew
+    dirhistory
+    gitfast
     git-extras
     gradle 
     jsontools 
@@ -104,6 +104,10 @@ function git_new_branch {
     gcm && gl && gco -b $1
 }
 
+function git_prune_branches {
+    git checkout master && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
+}
+
 ############################################################
 # Android
 ############################################################
@@ -116,6 +120,12 @@ export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$(ls -d $ANDROID_HOME/build-tools/[0-9]* | tail -1):$PATH"
 
 alias adbs=adb_select
+
+# Captures a screenshot of the selected Android device. Always
+# save with the .png extension.
+
+# Captures a screenshot of the selected Android device. Always
+# save with the .png extension.
 
 # Captures a screenshot of the selected Android device. Always
 # save with the .png extension.
@@ -196,27 +206,39 @@ function ensureAndroidSerialValid {
     adbPromptSelectDevice
 }
 
+function telecine_pull {
+    ensureAndroidSerialValid
+    FILE=$(adb shell "ls -d /sdcard/Movies/Telecine/*" | tail -1 | sed $'s/\r//')
+    adb pull $FILE ~/Downloads/
+}
+
+######################################################################
+# Gradle
+######################################################################
+alias grac="./gradlew clean"
+alias grab="./gradlew build"
+alias gracb="./gradlew clean build"
+
 ######################################################################
 # Golang
 ######################################################################
-export GOPATH=$HOME/Github/go-workbench
+export GOPATH=$HOME/code/go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 
 ######################################################################
+# OS-specific rcfile
+######################################################################
+case "$OSTYPE" in
+    linux*)
+        source $HOME/.zshrc_linux ;;
+    darwin*)
+        source $HOME/.zshrc_osx ;;
+esac
+
+######################################################################
 # Local ~/.zshrc_override
 ######################################################################
-# Sometimes there are computer-specific commands that you want in your rc file that should not be present on every computer
-# Put these commands into ~/.zshrc_override and they will be run on this local machine, but not synced into the git repo
-if [ -f $HOME/.zshrc_override ]; then
-    source $HOME/.zshrc_override
-fi
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    source $HOME/.zshrc_linux
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    source $HOME/.zshrc_osx
-fi
-
 function g {
     if [ $# -eq 0 ]; then
         git status
@@ -225,3 +247,7 @@ function g {
     fi
 }
 
+cd ~/.shellrc && for f in $(ls -A .); do
+    source $f
+done
+cd
