@@ -67,6 +67,8 @@ brew install\
 	libfreenect \
 	homebrew/binary/libspotify \
 	jlhonora/lsusb/lsusb \
+    kobalt \
+    kotlin \
 	maven \
 	mercurial \
 	mobile-shell \
@@ -74,6 +76,7 @@ brew install\
 	mpd \
 	mutt \
 	mysql \
+    ncdu \
 	ncmpcpp \
 	node \
 	nvm \
@@ -82,6 +85,7 @@ brew install\
 	pidcat \
 	python \
 	rbenv \
+    rustup \
 	s3cmd \
 	scala \
 	solr \
@@ -120,6 +124,7 @@ brew cask install \
 	clipmenu \
 	crosspack-avr \
 	deluge \
+    discord \
 	disk-inventory-x \
     dockertoolbox \
 	dropbox \
