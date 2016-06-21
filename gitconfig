@@ -1,6 +1,8 @@
 [user]
 	email = kevin@kevinmost.com
 	name = Kevin Most
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	default = simple
 [alias]
@@ -8,9 +10,31 @@
 	stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
     pr = pull-request
     graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+    grepall = !git rev-list --all | xargs git grep
+
+
+[diff]
+    compactionHeuristic = true
+	tool = vimdiff
+[submodule]
+	fetchJobs = 4
 
 
 [color]
 	ui = always
-[diff]
-	tool = vimdiff
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green

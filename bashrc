@@ -114,3 +114,6 @@ if ! shopt -oq posix; then
 fi
 
 export TERM=xterm-256color
+
+# added by travis gem
+[ -f /Users/kevinmost/.travis/travis.sh ] && source /Users/kevinmost/.travis/travis.sh

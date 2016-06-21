@@ -54,6 +54,7 @@ alias grep="grep --color"
 alias egrep="egrep --color"
 alias mv="mv -i"
 alias ack="ag"
+alias v="vim"
 alias teensy="dfu-programmer atmega32u4"
 alias i3-restart="i3-msg -t command restart"
 eval $(thefuck --alias)
@@ -61,8 +62,7 @@ eval $(thefuck --alias)
 ######################################################################
 # Functions
 ######################################################################
-function cdls { cd $1; ls; }
-function mkls { mkdir -p $1; ls $1; }
+function cl { cd $1; ls; }
 function lsproc {
     args=("$@")
     for e in "${args[@]}"; do
@@ -256,3 +256,6 @@ cd ~/.shellrc && for f in $(ls -A .); do
     source $f
 done
 cd
+
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh

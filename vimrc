@@ -10,6 +10,10 @@ set showmatch
 " Always show location in file (line #)
 set ruler
 
+" Relative line-numbers
+set number
+set relativenumber
+
 " Ignore case in searches
 set ignorecase
 " Searches update as you type, not just after pressing enter
