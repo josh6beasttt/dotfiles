@@ -5,6 +5,7 @@ packages = [
     'config'
     ]
 ignore = [
+    '.extras',
     'README.md',
     '.dotfilesrc',
     'fresh-install-mac.sh',

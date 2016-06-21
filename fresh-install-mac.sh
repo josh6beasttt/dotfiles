@@ -275,141 +275,17 @@ brew install Caskroom/cask/xquartz
 brew install brew-cask
 brew cask install java
 
+while read line; do
+    brew install $line
+done < .extras/brew-leaves.txt
+
+while read line; do
+    brew cask install $line
+done < .extras/brew-casks.txt
+
 # Install brew packages
 clear
 echo "Installing command-line tools via brew"
-brew install\
-	ack \
-	apache-spark \
-	nitsky/stm32/arm-none-eabi-gcc \
-	osx-cross/avr/avr-libc \
-	bash \
-	cassandra \
-	cloc \
-	cmus \
-	coreutils \
-	cowsay \
-	cuetools \
-	cvs \
-	daemonize \
-	dfu-programmer \
-	dfu-util \
-	homebrew/science/dotwrp \
-	fortune \
-	gawk \
-	gcc \
-	git \
-	gnu-sed \
-	gradle \
-	graphicsmagick \
-	heroku-toolbelt \
-	hub \
-	id3lib \
-	imagemagick \
-	jetty \
-	jq \
-	libev \
-	libfreenect \
-	homebrew/binary/libspotify \
-	jlhonora/lsusb/lsusb \
-    kobalt \
-    kotlin \
-	maven \
-	mercurial \
-	mobile-shell \
-	mopidy/mopidy/mopidy \
-	mpd \
-	mutt \
-	mysql \
-    ncdu \
-	ncmpcpp \
-	node \
-	nvm \
-	pandoc \
-	parallel \
-	pidcat \
-	python \
-	rbenv \
-    rustup \
-	s3cmd \
-	scala \
-	solr \
-	stlink \
-	the_silver_searcher \
-	thefuck \
-	tree \
-	unar \
-	v8 \
-	watch \
-	wget \
-	winetricks \
-	homebrew/x11/zenity \
-	zsh \
-
-
-# Post-command-line-setup stuff
-# mpd starts at boot
-mkdir -p ~/Library/LaunchAgents
-ln -sfv /usr/local/opt/mpd/*.plist ~/Library/LaunchAgents
-# Why does nvm want me to make this directory? I don't even know. Thanks JS devs.
-mkdir -p ~/.nvm
-
-# Install brew-cask packages
-clear
-echo "Installing GUI apps via brew-cask"
-brew cask install \
-	acorn \
-	adium \
-	alfred \
-	android-studio \
-	arduino \
-	basictex \
-	bettertouchtool \
-	betterzipql \
-	clipmenu \
-	crosspack-avr \
-	deluge \
-    discord \
-	disk-inventory-x \
-    dockertoolbox \
-	dropbox \
-	enjoyable \
-	filezilla \
-	flux \
-	genymotion \
-	gimp \
-	google-chrome \
-	intellij-idea \
-	iterm2-nightly \
-	java \
-	karabiner \
-	keepingyouawake \
-	keka \
-	kensington-trackball-works \
-	mpv \
-	obs \
-	postgres \
-	qlcolorcode \
-	qlmarkdown \
-	qlprettypatch \
-	qlstephen \
-	quicklook-csv \
-	quicklook-json \
-	scroll-reverser \
-	seil \
-	slack \
-	spark \
-	spectacle \
-	spotify \
-	steam \
-	stepmania \
-	sublime-text3 \
-	teamviewer \
-	usb-overdrive \
-	virtualbox \
-	webpquicklook \
-	xquartz \
-
 clear
 echo "Installing the best shell"
 # Add zsh to /etc/shells
