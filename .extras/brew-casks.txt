@@ -1,3 +1,4 @@
+1password
 acorn
 adium
 alfred
@@ -18,6 +19,8 @@ enjoyable
 filezilla
 firefox
 flux
+font-fira-code
+font-hasklig
 genymotion
 gimp
 google-chrome
@@ -29,10 +32,12 @@ karabiner
 keepingyouawake
 keka
 kensington-trackball-works
+kodi
 logitech-myharmony
 mactex
 mpv
 obs
+padbury-clock
 postgres
 postman
 qlcolorcode
@@ -43,6 +48,7 @@ quicklook-csv
 quicklook-json
 scroll-reverser
 seil
+servo
 slack
 spark
 spectacle
