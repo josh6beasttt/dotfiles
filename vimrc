@@ -12,7 +12,6 @@ set ruler
 
 " Relative line-numbers
 set number
-set relativenumber
 
 " Ignore case in searches
 set ignorecase
@@ -20,9 +19,6 @@ set ignorecase
 set incsearch
 " Highlights matches as you search
 set hlsearch
-
-" CTRL-R to reload current file
-map <C-R> :source %<CR>
 
 set clipboard=unnamed
 " Copy and paste to Mac copy buffer
@@ -36,6 +32,9 @@ set expandtab
 
 " Automatically line-break at 72 columns when writing git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Share clipboard with OS X
+set clipboard=unnamed
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 

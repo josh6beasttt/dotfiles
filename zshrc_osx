@@ -7,6 +7,3 @@ PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Why do I have to do this? Isn't the point of these to be launched on startup?
-grep -E "^setenv" /etc/launchd.conf | xargs -t -L 1 launchctl

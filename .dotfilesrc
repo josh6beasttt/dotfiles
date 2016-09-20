@@ -14,7 +14,7 @@ ignore = [
     '.gitignore',
     'link.py',
     'notes*.md',
-    '*.swp'
+    '*.swp',
+    'setup.sh',
+    'AppSupport'
     ]
-externals = {
-    }

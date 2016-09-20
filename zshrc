@@ -7,6 +7,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/t
 
 export ZSH=$HOME/.oh-my-zsh
 
+export RANGER_LOAD_DEFAULT_RC=FALSE
+
 ZSH_THEME="bira"
 
 HIST_STAMPS="yyyy-mm-dd"
@@ -96,10 +98,20 @@ function lsproc {
 }
 # Converts all FLACs in pwd to MP3
 function flac2mp3 { parallel -j 4 'a={}; ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"' ::: *.flac; }
+# Convert to webm
+function toWebM { ffmpeg -i $1 -c:v libvpx -qmin 0 -qmax 50 -crf 5 -b:v 1M -c:a libvorbis $1.webm }
 # Count lines in a file
 function countlines { wc -l $1 | tr -d ' ' }
 # Edit an rc file and then source it
 function rc { $EDITOR $1 && source $1 }
+# `g` runs `git status`; `g [anything else]` runs `git [anything else]`
+function g {
+    if [ $# -eq 0 ]; then
+        git status
+    else
+        git $@
+    fi
+}
 
 ######################################################################
 # Binaries to add to PATH
@@ -137,6 +149,7 @@ function git_prune_branches {
 ############################################################
 export JAVA_HOME="`/usr/libexec/java_home`"
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export NDK=$ANDROID_HOME/ndk-bundle
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 
@@ -239,9 +252,10 @@ function telecine_pull {
 ######################################################################
 # Gradle
 ######################################################################
-alias grac="./gradlew clean"
-alias grab="./gradlew build"
-alias gracb="./gradlew clean build"
+alias gdl="./gradlew"
+alias gdlcb="./gradlew clean build"
+alias gdlb="./gradlew build"
+alias gdlc="./gradlew clean"
 
 ######################################################################
 # Golang
@@ -253,7 +267,8 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 ######################################################################
 # Rust
 ######################################################################
-alias rustup="curl -sf https://static.rust-lang.org/rustup.sh | sudo sh"
+# Because Rust thinks we'll have OpenSSL installed
+export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
 
 ######################################################################
 # OS-specific rcfile
@@ -264,17 +279,6 @@ case "$OSTYPE" in
     darwin*)
         source $HOME/.zshrc_osx ;;
 esac
-
-######################################################################
-# Local ~/.zshrc_override
-######################################################################
-function g {
-    if [ $# -eq 0 ]; then
-        git status
-    else
-        git $@
-    fi
-}
 
 cd ~/.shellrc && for f in $(ls -A .); do
     source $f

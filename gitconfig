@@ -11,6 +11,7 @@
     pr = pull-request
     graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
     grepall = !git rev-list --all | xargs git grep
+	lastdiff = diff HEAD^ HEAD
 
 
 [diff]

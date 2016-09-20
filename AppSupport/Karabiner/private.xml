@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<root>
+    <item>
+        <name>Shift+Backslash to backspace</name>
+        <identifier>private_pipe_disable</identifier>
+        <autogen>
+            __KeyToKey__
+            KeyCode::BACKSLASH, ModifierFlag::SHIFT_L,
+            KeyCode::DELETE
+        </autogen>
+    </item>
+</root>
