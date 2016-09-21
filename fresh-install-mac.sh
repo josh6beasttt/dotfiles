@@ -259,7 +259,10 @@ clear
 echo "Installing some dependencies before we install all the big packages, this might hang for a while, but it's okay!"
 brew install Caskroom/cask/xquartz
 brew install brew-cask
+
 brew cask install java
+# JAVA_HOME should also be set as a global env var
+launchctl setenv JAVA_HOME /Library/Java/Home
 
 while read line; do
     brew install $line

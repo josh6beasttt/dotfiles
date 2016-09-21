@@ -65,6 +65,7 @@ ncmpcpp
 nvm
 pandoc
 parallel
+perl
 pidcat
 poppler
 python3
@@ -84,6 +85,7 @@ trash
 tree
 unar
 v8
+vim
 w3m
 watch
 wget

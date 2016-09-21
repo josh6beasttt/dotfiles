@@ -1,8 +1,0 @@
-alias xclip="xclip -selection c"
-
-PATH="$PATH:$HOME/bin/android-studio/bin"
-PATH="$PATH:$HOME/bin/intellij/bin"
-
-PATH="$HOME/bin/android-sdk/platform-tools:$PATH"
-
-PATH="$HOME/.scripts:$PATH"

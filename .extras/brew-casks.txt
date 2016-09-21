@@ -39,6 +39,7 @@ qlprettypatch
 qlstephen
 quicklook-csv
 quicklook-json
+rcdefaultapp
 scroll-reverser
 seil
 servo
