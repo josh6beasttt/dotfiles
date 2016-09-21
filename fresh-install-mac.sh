@@ -215,40 +215,25 @@ open http://www.asix.com.tw/download.php?sub=driverdetail&PItemID=131
 read -p "Press [Enter] if you have already installed those drivers and restarted your computer"
 
 ##############################################################################################################
-### Install Xcode (thx https://github.com/alrra/dotfiles/blob/ff123ca9b9b/os/os_x/installs/install_xcode.sh) #
+### Install Xcode
 ##############################################################################################################
-if ! xcode-select --print-path &> /dev/null; then
-
-    # Prompt user to install the XCode Command Line Tools
-    xcode-select --install &> /dev/null
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Wait until the XCode Command Line Tools are installed
-    until xcode-select --print-path &> /dev/null; do
-        sleep 5
-    done
-
-    print_result $? 'Install XCode Command Line Tools'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Point the `xcode-select` developer directory to
-    # the appropriate directory from within `Xcode.app`
-    # https://github.com/alrra/dotfiles/issues/13
-
-    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-    print_result $? 'Make "xcode-select" developer directory point to Xcode'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Prompt user to agree to the terms of the Xcode license
-    # https://github.com/alrra/dotfiles/issues/10
-
-    sudo xcodebuild -license
-    print_result $? 'Agree with the XCode Command Line Tools licence'
-
+echo "Checking Xcode CLI tools"
+# Only run if the tools are not installed yet
+# To check that try to print the SDK path
+xcode-select -p &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "Xcode CLI tools not found. Installing them..."
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+    PROD=$(softwareupdate -l |
+    grep "\*.*Command Line" |
+    head -n 1 | awk -F"*" '{print $2}' |
+    sed -e 's/^ *//' |
+    tr -d '\n')
+    softwareupdate -i "$PROD" -v;
+else
+    echo "Xcode CLI tools OK"
 fi
+
 
 ##############################################################################################################
 ### H O M E B R E W                                                                                          #
@@ -267,6 +252,7 @@ brew tap homebrew/science
 brew tap homebrew/versions
 brew tap jlhonora/lsusb
 brew tap mopidy/mopidy
+brew tap caskroom/fonts
 
 # Pre-installation reqs.
 clear

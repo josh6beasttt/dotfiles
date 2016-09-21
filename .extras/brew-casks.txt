@@ -1,8 +1,6 @@
 1password
 acorn
-adium
 alfred
-amethyst
 arduino
 atom
 basictex
@@ -13,15 +11,12 @@ crosspack-avr
 deluge
 discord
 disk-inventory-x
-dockertoolbox
 dropbox
 enjoyable
 filezilla
 firefox
 flux
 font-fira-code
-font-hasklig
-genymotion
 gimp
 google-chrome
 hyperswitch
@@ -35,10 +30,8 @@ kensington-trackball-works
 kodi
 logitech-myharmony
 mactex
-mpv
 obs
 padbury-clock
-postgres
 postman
 qlcolorcode
 qlmarkdown
@@ -56,10 +49,9 @@ spotify
 sqlitestudio
 steam
 stepmania
-sublime-text3
+sublime-text
 teamviewer
 unetbootin
-usb-overdrive
 virtualbox
 webpquicklook
 xquartz
