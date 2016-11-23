@@ -26,6 +26,9 @@ done
 
 antigen apply
 
+# This clobbered a bunch of aliases I had, so we need to reset them
+source ~/.zshenv
+
 # zsh vi mode
 bindkey -v
 
@@ -48,3 +51,5 @@ zle -N zle-keymap-select
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

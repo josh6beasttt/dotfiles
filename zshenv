@@ -8,8 +8,12 @@ export EDITOR=vim
 export KEYTIMEOUT=1
 
 export JAVA_HOME=/Library/Java/Home
-export ANDROID_HOME=/usr/local/Cellar/android-sdk
-export NDK=/usr/local/Cellar/android-ndk
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_SDK=$ANDROID_HOME
+export ANDROID_SDK_HOME=$ANDROID_HOME
+export NDK=$ANDROID_HOME/ndk-bundle
+export NDK_ROOT=$NDK
+export ANDROID_NDK_HOME=$NDK
 
 ###############################################################################
 # PATH
@@ -21,6 +25,7 @@ export PATH="$ANDROID_HOME/tools:$PATH"
 ######################################################################
 # Aliases
 ######################################################################
+alias rm=trash
 alias git=hub
 if [ `uname` = "Darwin" ]; then
     alias ls="ls -G"
@@ -59,6 +64,7 @@ function countlines { wc -l $1 | tr -d ' ' }
 # Edit an rc file and then source it
 function rc { $EDITOR $1 && source $1 }
 # `g` runs `git status`; `g [anything else]` runs `git [anything else]`
+unalias g
 function g {
     if [ $# -eq 0 ]; then
         git status
@@ -75,6 +81,7 @@ alias glg="git lg"
 alias gdm="git diff master"
 alias gap="git add -p ."
 alias gca="git commit --amend"
+alias gb="git branch -vv"
 
 alias gerrit_push="git push origin HEAD:refs/for/master"
 alias gerrit_draft="git push origin HEAD:refs/drafts/master"
@@ -89,6 +96,16 @@ function git_new_branch {
 
 function git_prune_branches {
     git checkout master && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
+}
+
+function git_submodule_init {
+	git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+	while read path_key path
+	do
+		url_key=$(echo $path_key | sed 's/\.path/.url/')
+		url=$(git config -f .gitmodules --get "$url_key")
+		git submodule add $url $path
+	done
 }
 
 ############################################################
@@ -204,3 +221,9 @@ export RUST_SRC_PATH=$HOME/code/languages/rust/src
 # Because Rust thinks we'll have OpenSSL installed
 export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
 
+######################################################################
+# Others
+######################################################################
+for f in $HOME/.shellenvs/*; do
+    source $f
+done
